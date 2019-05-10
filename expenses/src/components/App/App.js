@@ -6,7 +6,6 @@ import {NewProduct} from "../NewProduct/NewProduct";
 import {Products} from "../Products/Products";
 import {Expenses} from "../Expenses/Expenses";
 
-
 export class App extends React.Component {
     render() {
         return (
