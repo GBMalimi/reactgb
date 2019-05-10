@@ -5,7 +5,7 @@ export class Login extends React.Component {
     render() {
         return (
             <section>
-                <div class="Login">
+                <div class="login">
                     <div>
                         <form className="header_login">
                             <label className="input_label">E-mail</label>
@@ -13,10 +13,10 @@ export class Login extends React.Component {
                             <label className="input_label">Password</label>
                             <input className="input_fields" type="password" />
                             <input className="submit" type="submit" value="SIGN IN" />
-                        </form>
-                        <p className="p_register"> Or if you don't have an account,
+                            <p className="p_register"> Or if you don't have an account,
                                     <a className="link" href="./Register.html">Register</a>
-                        </p>
+                            </p>
+                        </form>
                     </div>
                 </div>
             </section>
