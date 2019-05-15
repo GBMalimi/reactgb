@@ -1,6 +1,6 @@
 import React from "react";
 import "./Expenses.css"
-import avatar from "../../asets/images/25.jpg"
+import avatar from "../../assets/images/25.jpg"
 
 export class Expenses extends React.Component {
     render() {
@@ -9,8 +9,8 @@ export class Expenses extends React.Component {
                 <div class="body_newproduct">
                     <div class="header_product">
                         <div class="buttons">
-                            <button class="btn1"><a class="link" href="./Products.html">PRODUCTS</a></button>
-                            <button class="btn2"><a class="link" href="./Expenses.html">EXPENSES</a></button>
+                            <button class="btn1"><a class="link" href="./products">PRODUCTS</a></button>
+                            <button class="btn2"><a class="link" href="./expenses">EXPENSES</a></button>
                         </div>
                         <div class="avatar">
                             <img class="header_pic" alt="avi" src={avatar} />

@@ -85,3 +85,9 @@
     text-align: center;
     color: #8d8d8d;
 }
+.circle{
+    background-image: url("../../assets/images/plus.svg");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+}

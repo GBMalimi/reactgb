@@ -5,6 +5,7 @@ import {Register} from "../Register/Register";
 import {NewProduct} from "../NewProduct/NewProduct";
 import {Products} from "../Products/Products";
 import {Expenses} from "../Expenses/Expenses";
+// import {Portal} from "../Portal/Portal";
 
 export class App extends React.Component {
     render() {
@@ -15,6 +16,7 @@ export class App extends React.Component {
                 <Route path="/newproduct" component={NewProduct}/>
                 <Route path="/products" component={Products}/>
                 <Route path="/expenses" component={Expenses}/>
+                {/* <Route path="/portal" component={Portal}/> */}
             </main >
         )
     }

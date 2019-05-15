@@ -23,7 +23,7 @@ export class Register extends React.Component {
                         <input className="input_fields" type="password" />
                         <input className="submit" type="submit" value="REGISTER" />
                         <p className="p_signin">Or if you already have an account,
-                            <a className="link" href="./Login.html">Sing in</a>
+                            <a className="link" href="./">Sing in</a>
                         </p>
                     </form>
                 </div>

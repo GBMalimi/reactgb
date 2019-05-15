@@ -150,3 +150,15 @@
     margin-bottom: 110px;  
     margin-top: 120px;
 }
+.trash{
+    background-image: url("../../assets/images/trash.svg");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+}
+.edit{
+    background-image: url("../../assets/images/edit.svg");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+}

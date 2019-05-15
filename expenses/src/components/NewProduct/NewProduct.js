@@ -1,5 +1,6 @@
 import React from "react";
 import "./NewProduct.css"
+import avatar from "../../assets/images/25.jpg"
 
 export class NewProduct extends React.Component {
     render() {
@@ -8,12 +9,12 @@ export class NewProduct extends React.Component {
                 <div class="body_newproduct">
                     <div class="header_product">
                         <div class="buttons">
-                            <button class="btn1"><a class="link" href="./Products.html">PRODUCTS</a></button>
-                            <button class="btn2"><a class="link" href="./Expenses.html">EXPENSES</a></button>
+                            <button className="btn1"><a className="link" href="./products">PRODUCTS</a></button>
+                            <button className="btn2"><a className="link" href="./expenses">EXPENSES</a></button>
                         </div>
                         <div class="avatar">
-                            <img class="header_pic" alt="avi" src="./pics/25.jpg" />
-                            <p class="header_name">Goce Biskovski</p>
+                            <img className="header_pic" alt="avi" src={avatar} />
+                            <p className="header_name">Goce Biskovski</p>
                         </div>
                     </div>
                     <div class="new_product">
@@ -21,20 +22,20 @@ export class NewProduct extends React.Component {
                             <h4>New Product</h4>
                         </div>
                         <div class="add_new_detals">
-                            <label class="input_label">Product Name</label>
-                            <input class="input_fields" type="text" />
-                            <label class="input_label">Product Description</label>
-                            <input class="input_fields" type="text" />
-                            <label class="input_label">Product type</label>
-                            <input class="input_fields" type="text" />
-                            <label class="input_label">Purchase Date</label>
-                            <input class="input_fields" type="time" />
-                            <label class="input_label">Product Price</label>
-                            <input class="input_fields" type="text" />
-                            <button class="submit" type="submit">CREATE PRODUCT</button>
+                            <label className="input_label">Product Name</label>
+                            <input className="input_fields" type="text" />
+                            <label className="input_label">Product Description</label>
+                            <input className="input_fields" type="text" />
+                            <label className="input_label">Product type</label>
+                            <input className="input_fields" type="text" />
+                            <label className="input_label">Purchase Date</label>
+                            <input className="input_fields" type="time" />
+                            <label className="input_label">Product Price</label>
+                            <input className="input_fields" type="text" />
+                            <button className="submit" type="submit">CREATE PRODUCT</button>
                         </div>
                         <div class="add_new_product">
-                            <label class="logo_simbol"><i class="fas fa-plus-circle"></i></label>
+                            <label className="logo_simbol"><i className="circle"></i></label>
                             <div class="product_text">
                                 <h4>You are creating a new product</h4>
                             </div>
