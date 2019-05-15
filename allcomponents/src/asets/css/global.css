@@ -512,3 +512,18 @@ html,body {
     margin-bottom: 110px;  
     margin-top: 120px;
 }
+.th-btn{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.edit-button{
+    background-image: url("../assets/images/edit.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.delete-button {
+    background-image: url("../assets/images/trash-alt.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
