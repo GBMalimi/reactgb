@@ -14,7 +14,7 @@ export class App extends React.Component {
                 <Route path="/register" component={Register}/>
                 <Route path="/newproduct" component={NewProduct}/>
                 <Route path="/products" component={Products}/>
-                <Route path="/Expenses" component={Expenses}/>
+                <Route path="/expenses" component={Expenses}/>
             </main >
         )
     }
