@@ -1,22 +1,12 @@
 import React from "react";
 import "./Expenses.css"
-import avatar from "../../assets/images/25.jpg"
 
 export class Expenses extends React.Component {
     render() {
         return (
             <section>
                 <div class="body_newproduct">
-                    <div class="header_product">
-                        <div class="buttons">
-                            <button class="btn1"><a class="link" href="./products">PRODUCTS</a></button>
-                            <button class="btn2"><a class="link" href="./expenses">EXPENSES</a></button>
-                        </div>
-                        <div class="avatar">
-                            <img class="header_pic" alt="avi" src={avatar} />
-                            <p class="header_name">Goce Biskovski</p>
-                        </div>
-                    </div>
+                    
                     <div class="buttons_2">
                         <div class="title">
                             <h2>Expenses</h2>

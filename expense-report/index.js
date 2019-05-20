@@ -1,80 +1,131 @@
 const products = require(`./models/products`);
+const users = require(`./models/users`);
 const express = require(`express`);
 var app = express();
-const dba=require("./connection");
-const User=require("./models/users")
+const db = require("./connection");
+const User = require("./models/users");
+const Product = require("./models/products");
 const myParser = require("body-parser");
+app.use(myParser.urlencoded({ extended: true }));
 const session = require(`express-session`);
-app.use(session({ secret: "test" }));
+app.use(session({ secret: "test2" }));
 
 app.listen(8005)
 
-app.get ("/", (req,res)=>{
-    res.send("hello");
-})
-
-app.use(myParser.urlencoded({ extended: true }));
-
-
+// app.get("/", (req, res) => {
+//     res.send("hello");
+// });
 
 app.post(`/register`, (req, res, next) => {
-    var firstname = req.body.firstname;
-    var lastname = req.body.lastname;
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
     var email = req.body.email;
-    var password = req.body.pass;
     var birthDate = req.body.birthDate;
     var telephone = req.body.telephone;
     var country = req.body.country;
+    var password = req.body.password;
 
-    let user=new User({
-        firstName: firstname,
-        lastName: lastname,
+    let user = new User({
+        firstName: firstName,
+        lastName: lastName,
         email: email,
-        password: password,
         birthDate: birthDate,
         telephone: telephone,
-        country: country
-                
-    })
+        country: country,
+        password: password
+    });
 
-    user.save(function(err){
-        if(err){
+    user.save(function (err) {
+        if (err) {
             return next(err);
         }
-        else{
+        else {
             res.send("User saved")
         }
     })
 });
 
-app.post(`/newproduct`, (req,res, next)=>{
-    var productName=req.body.productname;
-    var productDescription=req.body.productdescription;
-    var productType=req.body.producttype;
-    var prooductDate=req.body.prooductdate;
-    var productPrice=req.body.productprice;
+app.post(`/newProduct`, (req, res, next) => {
+    var productName = req.body.productName;
+    var productDescription = req.body.productDescription;
+    var productType = req.body.productType;
+    var productDate = req.body.productDate;
+    var productPrice = req.body.productPrice;
 
-    let product=new Product({
-        productName: productname,
-        productDescription: productdescription,
-        productType: producttype,
-        prooductDate: prooductdate,
-        productPrice: productprice
-    })
+    let product = new Product({
+        productName: productName,
+        productDescription: productDescription,
+        productType: productType,
+        productDate: productDate,
+        productPrice: productPrice
+    });
 
-    user.save(function(err){
-        if(err){
+    product.save(function (err) {
+        if (err) {
             return next(err);
         }
-        else{
-            res.send("User saved")
+        else {
+            res.send("Product Added")
         }
     })
-})
+});
 
-// app.post(`./login`, (req, res) => {
-//     var email = req.body.emailLogin;
-//     var password = req.body.passwordLogin;
+app.get("/users", (req, res, next) => {
+    users.find({}, function (err, users) {
+        if (err) {
+            return next(err);
+        }
+        res.send(users);
+    })
+});
+
+app.get("/products", (req, res, next) => {
+    products.find({}, function (err, products) {
+        if (err) {
+            return next(err);
+        }
+        res.send(products);
+    })
+});
+
+app.delete("/products", (req, res, next) => {
+    products.deleteOne({ _id: "5ce0845571c37c1fa4084484" }, function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.send("Product Deleted");
+    })
+});
+
+app.put("/products", (req, res, next) => {
+    var newValues = { $set: { productName: "gazoza" } };
+    products.updateOne({ _id: "5ce0845471c37c1fa4084483" }, newValues, function (err, products) {
+        if (err) {
+            return next(err);
+        }
+        res.send("Product Updated");
+    })
+});
+
+
+
+
+app.post(`./login`, (req, res) => {
+    var email = req.body.emailLogin;
+    var password = req.body.passwordLogin;
+    let user = new User({
+        email: email,
+        password: password
+    });
+    user.findOne(function (err) {
+        if (err) {
+            return next(err);
+        }
+        else {
+            res.send("user find")
+        }
+    })
+});
 
 //     // database checks
 
@@ -104,11 +155,6 @@ app.post(`/newproduct`, (req,res, next)=>{
 
 
 
-app.get("/products", (req, res, next)=>{
-    products.find({},function(err, products){
-        if(err) {
-            return next(err);
-        }
-        res.send(products);
-    })
-})
+
+
+

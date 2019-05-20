@@ -12,12 +12,12 @@ const mongoose=require(`mongoose`);
 const Schema=mongoose.Schema;
 
 var productSchema=new Schema({
-    productName:{type: String, require: true},
+    productName:{type: String},
     productDescription: {type: String},
     productType: {type: String},
-    purchaseDate: {type: Date, required: true},
-    price: {type: Number, required:true},
-    userId: {type: String, required:true}
+    productDate: {type: String},
+    productPrice: {type: String},
+    userId: {type: String},
 });
 
 var Product=mongoose.model(`Product`, productSchema);

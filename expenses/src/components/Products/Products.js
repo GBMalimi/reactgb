@@ -1,22 +1,12 @@
 import React from "react";
-import "./Products.css"
-import avatar from "../../assets/images/25.jpg"
+import "./Products.css";
 
 export class Products extends React.Component {
     render() {
         return (
             <section>
                 <div class="body_newproduct">
-                    <div class="header_product">
-                        <div class="buttons">
-                            <button className="btn1"><a className="link" href="./products">PRODUCTS</a></button>
-                            <button className="btn2"><a className="link" href="./expenses">EXPENSES</a></button>
-                        </div>
-                        <div class="avatar">
-                            <img className="header_pic" alt="avi" src={avatar} />
-                            <p className="header_name">Goce Biskovski</p>
-                        </div>
-                    </div>
+                    
                     <div class="buttons_2">
                         <div class="title">
                             <h2 className="expenses_p">Expenses</h2>
@@ -168,6 +158,7 @@ export class Products extends React.Component {
                         </div>
                     </div>
                 </div>
+
             </section>
         )
     }

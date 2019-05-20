@@ -12,18 +12,16 @@
 const mongoose=require(`mongoose`);
 const Schema=mongoose.Schema;
 
-var usersSchema=new Schema({
+var userSchema=new Schema({
     firstName:{type: String},
     lastName: {type: String},
-    email: {type: String},
-    password: {type: String},
+    email: {ttype: String},
     birthDate: {type: String},
     telephone: {type: String},
     country: {type: String},
-    
-    
+    password: {type: String}
 });
 
-var User=mongoose.model(`User`, usersSchema);
+var User=mongoose.model(`User`, userSchema);
 
 module.exports=User;
