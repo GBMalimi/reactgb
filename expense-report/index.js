@@ -10,11 +10,18 @@ app.use(myParser.urlencoded({ extended: true }));
 const session = require(`express-session`);
 app.use(session({ secret: "test2" }));
 
-app.listen(8005)
+app.listen(3000)
 
 // app.get("/", (req, res) => {
 //     res.send("hello");
 // });
+
+let allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
+    next();
+  }
+  app.use(allowCrossDomain);
 
 app.post(`/register`, (req, res, next) => {
     var firstName = req.body.firstName;
@@ -70,14 +77,14 @@ app.post(`/newProduct`, (req, res, next) => {
     })
 });
 
-app.get("/users", (req, res, next) => {
-    users.find({}, function (err, users) {
-        if (err) {
-            return next(err);
-        }
-        res.send(users);
-    })
-});
+// app.get("/users", (req, res, next) => {
+//     users.find({}, function (err, users) {
+//         if (err) {
+//             return next(err);
+//         }
+//         res.send(users);
+//     })
+// });
 
 app.get("/products", (req, res, next) => {
     products.find({}, function (err, products) {
@@ -89,7 +96,7 @@ app.get("/products", (req, res, next) => {
 });
 
 app.delete("/products", (req, res, next) => {
-    products.deleteOne({ _id: "5ce0845571c37c1fa4084484" }, function (err) {
+    Product.deleteOne({_id:req.params.id}, function(err){
         if (err) {
             return next(err);
         }
@@ -97,16 +104,25 @@ app.delete("/products", (req, res, next) => {
     })
 });
 
-app.put("/products", (req, res, next) => {
-    var newValues = { $set: { productName: "gazoza" } };
-    products.updateOne({ _id: "5ce0845471c37c1fa4084483" }, newValues, function (err, products) {
+
+app.patch("/products", (req, res, next) => {
+    Product.findByIdAndUpdate({_id:req.params.id}, req.body, function(err){
         if (err) {
             return next(err);
         }
-        res.send("Product Updated");
+        res.send("Product Update");
     })
 });
 
+// app.put("/products", (req, res, next) => {
+//     var newValues = { $set: { productName: "gazoza" } };
+//     products.updateOne({ _id: "5ce0845471c37c1fa4084483" }, newValues, function (err, products) {
+//         if (err) {
+//             return next(err);
+//         }
+//         res.send("Product Updated");
+//     })
+// });
 
 
 
