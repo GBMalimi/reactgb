@@ -6,15 +6,17 @@ const db = require("./connection");
 const User = require("./models/users");
 const Product = require("./models/products");
 const myParser = require("body-parser");
-app.use(myParser.urlencoded({ extended: true }));
 const session = require(`express-session`);
-app.use(session({ secret: "test2" }));
+// app.use(session({ secret: "test2" }));
+// app.use(myParser.urlencoded({ extended: true }));
+// var app = express();
 
 app.listen(3000)
 
 // app.get("/", (req, res) => {
 //     res.send("hello");
 // });
+app.use(myParser.json({extended:true}));
 
 let allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -72,7 +74,7 @@ app.post(`/newProduct`, (req, res, next) => {
             return next(err);
         }
         else {
-            res.send("Product Added")
+            res.send("New Product Added")
         }
     })
 });
@@ -95,53 +97,73 @@ app.get("/products", (req, res, next) => {
     })
 });
 
-app.delete("/products", (req, res, next) => {
+app.get("/expenses", (req, res, next) => {
+    Product.find({}, function(err, products) {
+        if(err){
+            return next(err)
+        }
+
+        res.send(products)
+    })
+})
+
+app.delete("/products/:id", (req, res, next) => {
     Product.deleteOne({_id:req.params.id}, function(err){
-        if (err) {
-            return next(err);
+        if(err){
+            return next(err)
         }
         res.send("Product Deleted");
     })
 });
 
 
-app.patch("/products", (req, res, next) => {
-    Product.findByIdAndUpdate({_id:req.params.id}, req.body, function(err){
-        if (err) {
-            return next(err);
+app.patch("/products/:id", (req, res, next) => {
+    Product.findByIdAndUpdate({_id:req.params.id}, req.body, (err) => {
+        if(err){
+            return next(err)
         }
         res.send("Product Update");
     })
 });
 
-// app.put("/products", (req, res, next) => {
-//     var newValues = { $set: { productName: "gazoza" } };
-//     products.updateOne({ _id: "5ce0845471c37c1fa4084483" }, newValues, function (err, products) {
-//         if (err) {
-//             return next(err);
-//         }
-//         res.send("Product Updated");
-//     })
-// });
-
-
-
-app.post(`./login`, (req, res) => {
-    var email = req.body.emailLogin;
-    var password = req.body.passwordLogin;
-    let user = new User({
-        email: email,
-        password: password
-    });
-    user.findOne(function (err) {
+app.put("/products", (req, res, next) => {
+    var newValues = { $set: { productName: "gazoza" } };
+    products.updateOne({ _id: "5ce0845471c37c1fa4084483" }, newValues, function (err, products) {
         if (err) {
             return next(err);
         }
-        else {
-            res.send("user find")
-        }
+        res.send("Product Updated");
     })
 });
+
+
+
+app.post("/", (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    req.session.user = email;
+
+    res.send("Succesfully Logged In")
+
+});
+
+// app.post(`./login`, (req, res) => {
+//     var email = req.body.emailLogin;
+//     var password = req.body.passwordLogin;
+//     let user = new User({
+//         email: email,
+//         password: password
+//     });
+//     user.findOne(function (err) {
+//         if (err) {
+//             return next(err);
+//         }
+//         else {
+//             res.send("user find")
+//         }
+//     })
+// });
 
 //     // database checks
 
